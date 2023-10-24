@@ -14,7 +14,7 @@ arrow = "^1.2.3"
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.5.1"
 isort = "^5.11.4"
-black = "^23.3.0"
+black = "^23.10.1"
 pytest = "^7.4.0"
 flake8 = "^6.1.0"
 flake8-builtins = "^2.1.0"
