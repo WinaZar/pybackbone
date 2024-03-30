@@ -1,4 +1,0 @@
-[flake8]
-max-line-length = 100
-exclude = migrations
-extend-ignore = E203,C812,B008,C816,C101

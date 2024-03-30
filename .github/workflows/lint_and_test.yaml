@@ -14,7 +14,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:15.1
+        image: postgres:16.2
         ports:
           - 5432:5432
         env:
@@ -27,7 +27,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       redis:
-        image: redis
+        image: redis:7.2.4
         ports:
           - 6379:6379
         options: >-
@@ -36,11 +36,11 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.11
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11.2
+          python-version: 3.12.2
       - name: Install poetry
         run: |
           pip install poetry
@@ -56,21 +56,15 @@ jobs:
       - name: Install dependencies
         working-directory: ${{ env.project-working-directory }}
         run: |
-          poetry install --no-root
+          poetry install --sync
       - name: Lint
         working-directory: ${{ env.project-working-directory }}
         run: |
-          # stop the build if there are Python syntax errors or undefined names
-          poetry run flake8 source tests --count --show-source --statistics
-      - name: Run mypy
-        working-directory: ${{ env.project-working-directory }}
-        run: |
-          poetry run mypy source
+          make lint
       - name: Run tests
         working-directory: ${{ env.project-working-directory }}
         env:
-          DATABASE__URL: postgresql+asyncpg://user:password@localhost:5432/backend
-          TESTS__USE_TESTCONTAINERS: false
+          DATABASE__URL: postgresql+psycopg://user:password@localhost:5432/backend
         run: |
           poetry run pytest --junitxml=junit/test-results.xml --cov=backend --cov-report=xml --cov-report=html
       - name: Upload test results

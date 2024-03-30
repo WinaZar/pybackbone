@@ -1,8 +1,6 @@
-version: '3.9'
-
 services:
   postgres:
-    image: postgres:15.1
+    image: postgres:16.2
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -14,7 +12,7 @@ services:
       - ${POSTGRES_PORT:-5432}:5432
 
   redis:
-    image: redis:7.0.7
+    image: redis:7.2.4
     restart: always
     command:
       - redis-server
