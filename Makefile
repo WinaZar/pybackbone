@@ -1,6 +1,8 @@
+.PHONY: install-hooks lint
+
 install-hooks:
 	@pre-commit install -t pre-commit -t commit-msg
 
 lint:
-	@poetry run flake8 source tests --count --show-source --statistics
-	@poetry run mypy source
+	@poetry run ruff check ./src ./tests
+	@poetry run mypy ./src ./tests
