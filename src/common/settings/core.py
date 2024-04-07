@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     postgres_host: str = "localhost"
     debug: bool = False
     # FastAPI settings
+    uvicorn_host: str = "127.0.0.1"
     uvicorn_port: int = 5001
     uvicorn_log_level: str = "info"
 

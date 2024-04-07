@@ -10,8 +10,6 @@ make install-hooks
 
 Setup env with [direnv](https://direnv.net/) using `.envrc.example`.
 
-```bash
-
 Run dev infrastructure:
 
 ```bash

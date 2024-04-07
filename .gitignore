@@ -141,5 +141,5 @@ cython_debug/
 # IDE
 .vscode
 
-.envrc
+.envrc*
 .ruff_cache

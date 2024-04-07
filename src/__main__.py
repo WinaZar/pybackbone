@@ -29,6 +29,7 @@ def run_web() -> None:
     uvicorn.run(
         "src.interfaces.rest_api.app:create_app",
         factory=True,
+        host=service_settings.uvicorn_host,
         port=service_settings.uvicorn_port,
         log_level=service_settings.uvicorn_log_level,
         reload=service_settings.debug,

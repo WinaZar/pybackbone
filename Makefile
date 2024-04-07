@@ -32,3 +32,7 @@ run-web:
 .PHONY: run-tests
 run-tests:
 	@poetry run pytest -v .
+
+.PHONY: build-image
+build-image:
+	@docker buildx build --platform=linux/amd64 -t example:$(tag) .
