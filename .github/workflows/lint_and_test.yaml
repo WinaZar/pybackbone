@@ -64,7 +64,9 @@ jobs:
       - name: Run tests
         working-directory: ${{ env.project-working-directory }}
         env:
-          DATABASE__URL: postgresql+psycopg://user:password@localhost:5432/backend
+          POSTGRES_DB: test_database
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
         run: |
           poetry run pytest --junitxml=junit/test-results.xml --cov=backend --cov-report=xml --cov-report=html
       - name: Upload test results
