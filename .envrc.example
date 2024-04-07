@@ -3,3 +3,4 @@ export POSTGRES_PASSWORD=password
 export POSTGRES_DB=main_database
 export POSTGRES_PORT=5432
 export REDIS_PORT=6379
+export DEBUG=False
